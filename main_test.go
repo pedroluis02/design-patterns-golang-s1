@@ -12,6 +12,6 @@ func TestSingleton(t *testing.T) {
 	want := singleton.Success
 
 	if status != want {
-		t.Errorf("got %s, wanted %q", status, want)
+		t.Errorf("got %s, wanted %s", status, want)
 	}
 }
