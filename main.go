@@ -4,11 +4,12 @@ import (
 	"fmt"
 
 	"github.com/pedroluis02/design-patterns-golang-s1/builder"
+	"github.com/pedroluis02/design-patterns-golang-s1/factory"
 	"github.com/pedroluis02/design-patterns-golang-s1/singleton"
 )
 
 func main() {
-	builder1()
+	factory1()
 }
 
 func singleton1() {
@@ -35,4 +36,13 @@ func builder1() {
 
 	xmlStr := response.SetBuilder(xmlBuilder).BuildResponse(product)
 	fmt.Println(fmt.Sprintf("xml: %s", xmlStr))
+}
+
+func factory1() {
+	outputFactory := &factory.OutputStreamFactory{}
+	output := outputFactory.GetOutput(factory.FileType)
+
+	output.WriteString("Message 1")
+	output.WriteNewLine()
+	output.WriteString("Message 2")
 }
