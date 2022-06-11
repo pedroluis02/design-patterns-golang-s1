@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"testing"
 
 	"github.com/pedroluis02/design-patterns-golang-s1/builder"
+	"github.com/pedroluis02/design-patterns-golang-s1/factory"
 	"github.com/pedroluis02/design-patterns-golang-s1/singleton"
 )
 
@@ -32,10 +34,23 @@ func TestBuilder(t *testing.T) {
 	jsonStr := response.SetBuilder(jsonBuilder).BuildResponse(product)
 	wantJson := fmt.Sprintf("{\"id\":\"%s\",\"name\":\"%s\",\"price\":%g,\"stock\":%d}", product.Id, product.Name, product.Price, product.Stock)
 
-	fmt.Println(jsonStr)
-	fmt.Println(wantJson)
+	t.Log(jsonStr)
+	t.Log(wantJson)
 
 	if jsonStr != wantJson {
 		t.Errorf("json result error: %s", wantJson)
+	}
+}
+
+func TestFactory(t *testing.T) {
+	outputFactory := &factory.OutputStreamFactory{}
+	outputFactory.GetOutput(factory.FileType)
+
+	want := "log-tmp.txt"
+	_, err := os.Stat(want)
+	if err != nil {
+		t.Errorf(err.Error())
+	} else {
+		t.Logf("%s exists", want)
 	}
 }
