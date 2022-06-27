@@ -3,13 +3,14 @@ package main
 import (
 	"fmt"
 
+	"github.com/pedroluis02/design-patterns-golang-s1/abstract_factory"
 	"github.com/pedroluis02/design-patterns-golang-s1/builder"
 	"github.com/pedroluis02/design-patterns-golang-s1/factory"
 	"github.com/pedroluis02/design-patterns-golang-s1/singleton"
 )
 
 func main() {
-	factory1()
+	abstractFactory()
 }
 
 func singleton1() {
@@ -45,4 +46,15 @@ func factory1() {
 	output.WriteString("Message 1")
 	output.WriteNewLine()
 	output.WriteString("Message 2")
+}
+
+func abstractFactory() {
+	factoryMaker := abstract_factory.ServerFactoryMaker{}
+	factory := factoryMaker.GetFactory(abstract_factory.Testing)
+
+	socketServer := factory.CreateSocketServer()
+	apiRestFul := factory.CreateApiRestFul()
+
+	fmt.Println(socketServer.ToString())
+	fmt.Println(apiRestFul.ToString())
 }
