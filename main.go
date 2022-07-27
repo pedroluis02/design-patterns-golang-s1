@@ -6,11 +6,12 @@ import (
 	"github.com/pedroluis02/design-patterns-golang-s1/abstract_factory"
 	"github.com/pedroluis02/design-patterns-golang-s1/builder"
 	"github.com/pedroluis02/design-patterns-golang-s1/factory"
+	"github.com/pedroluis02/design-patterns-golang-s1/observer"
 	"github.com/pedroluis02/design-patterns-golang-s1/singleton"
 )
 
 func main() {
-	abstractFactory()
+	observer1()
 }
 
 func singleton1() {
@@ -57,4 +58,15 @@ func abstractFactory() {
 
 	fmt.Println(socketServer.ToString())
 	fmt.Println(apiRestFul.ToString())
+}
+
+func observer1() {
+	product := observer.NewProduct("Macbook pro")
+	fmt.Println(fmt.Sprintf("Product: %s", product.GetName()))
+
+	observer.NewProductTax(product)
+	observer.NewProductDiscount(product, 10)
+
+	product.SetPrice(4000)
+	product.SetPrice(2500)
 }

@@ -7,6 +7,7 @@ import (
 
 	"github.com/pedroluis02/design-patterns-golang-s1/builder"
 	"github.com/pedroluis02/design-patterns-golang-s1/factory"
+	"github.com/pedroluis02/design-patterns-golang-s1/observer"
 	"github.com/pedroluis02/design-patterns-golang-s1/singleton"
 )
 
@@ -52,5 +53,23 @@ func TestFactory(t *testing.T) {
 		t.Errorf(err.Error())
 	} else {
 		t.Logf("%s exists", want)
+	}
+}
+
+func TestObserver(t *testing.T) {
+	product := observer.NewProduct("Macbook pro")
+	tax := observer.NewProductTax(product)
+	discount := observer.NewProductDiscount(product, 10)
+
+	product.SetPrice(4000)
+
+	want1 := 720.0
+	if tax.GetTotal() != want1 {
+		t.Errorf("got tax %.2f, wanted %.2f", tax.GetTotal(), want1)
+	}
+
+	want2 := 400.0
+	if discount.GetTotal() != want2 {
+		t.Errorf("got discount %.2f, wanted %.2f", discount.GetTotal(), want2)
 	}
 }
