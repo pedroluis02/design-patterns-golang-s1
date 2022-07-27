@@ -10,11 +10,11 @@ func (s *Subject) Init() {
 	s.observers = list.New()
 }
 
-func (s *Subject) registerObserver(observer Observer) {
+func (s *Subject) RegisterObserver(observer Observer) {
 	s.observers.PushBack(observer)
 }
 
-func (s *Subject) unregisterObserver(observer Observer) {
+func (s *Subject) UnregisterObserver(observer Observer) {
 	for temp := s.observers.Front(); temp != nil; temp = temp.Next() {
 		if temp.Value == observer {
 			s.observers.Remove(temp)

@@ -9,7 +9,7 @@ func NewProductTax(product *TechProduct) *ProductTax {
 		total:   0,
 	}
 
-	p.product.registerObserver(p)
+	p.product.RegisterObserver(p)
 
 	return p
 }

@@ -64,9 +64,16 @@ func observer1() {
 	product := observer.NewProduct("Macbook pro")
 	fmt.Println(fmt.Sprintf("Product: %s", product.GetName()))
 
-	observer.NewProductTax(product)
-	observer.NewProductDiscount(product, 10)
+	tax := observer.NewProductTax(product)
+	discount := observer.NewProductDiscount(product, 10)
 
 	product.SetPrice(4000)
+
+	product.UnregisterObserver(tax)
+
+	product.SetPrice(300)
+
+	product.UnregisterObserver(discount)
+
 	product.SetPrice(2500)
 }

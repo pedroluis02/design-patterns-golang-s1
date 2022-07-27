@@ -9,7 +9,7 @@ func NewProductDiscount(product *TechProduct, discount float64) *ProductDiscount
 		total:   0,
 	}
 
-	p.product.registerObserver(p)
+	p.product.RegisterObserver(p)
 
 	return p
 }
